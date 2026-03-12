@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Book Water{% endblock %}
+
+{% block content %}
+<div style="max-width:600px; margin:auto; padding:20px;">
+
+    <div style="background:white; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.1); padding:30px;">
+
+        <div style="margin-bottom:20px;">
+            <a href="/dashboard" style="text-decoration:none; font-size:14px; color:#007bff; display:inline-block; margin-bottom:10px;">
+                ← Back to Dashboard
+            </a>
+            <h2 style="margin-bottom:6px;">Book Water Delivery 💧</h2>
+            <p style="color:#666;">Current Rate: <strong>₹{{ rate }}</strong> per Liter</p>
+        </div>
+
+        <form method="POST">
+
+            <div style="margin-bottom:18px;">
+                <label style="font-weight:600; display: block; margin-bottom: 8px;">Select Quantity</label>
+                <select id="quantitySelect" name="quantity" required style="width:100%; padding:12px; border-radius:8px; border:1px solid #ccc; font-size:14px; background: #fff;">
+                    <option value="" disabled selected>Choose a package...</option>
+                    <option value="5000">5,000 Liters (Total: ₹{{ (5000 * rate)|int }})</option>
+                    <option value="10000">10,000 Liters (Total: ₹{{ (10000 * rate)|int }})</option>
+                    <option value="15000">15,000 Liters (Total: ₹{{ (15000 * rate)|int }})</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom:18px;">
+                <label style="font-weight:600; display: block; margin-bottom: 8px;">Preferred Delivery Date</label>
+                <input type="date" id="booking_date" name="booking_date" required style="width:100%; padding:12px; border-radius:8px; border:1px solid #ccc; font-size:14px;">
+            </div>
+
+            <div style="margin-bottom:18px;">
+                <label style="font-weight:600; display: block; margin-bottom: 8px;">Delivery Address</label>
+                <textarea name="address" rows="3" placeholder="Enter full delivery address" required style="width:100%; padding:12px; border-radius:8px; border:1px solid #ccc; font-size:14px; resize: none;"></textarea>
+            </div>
+
+            <div style="margin-bottom:25px;">
+                <label style="font-weight:600; display: block; margin-bottom: 8px;">Payment Method</label>
+                <div style="display: flex; gap: 15px;">
+                    <label style="cursor: pointer;">
+                        <input type="radio" name="payment_method" value="COD" checked> Cash on Delivery
+                    </label>
+                    <label style="cursor: pointer;">
+                        <input type="radio" name="payment_method" value="Online"> Online Payment
+                    </label>
+                </div>
+                <small style="color: #888; display: block; margin-top: 5px;">*Online payment will show a UPI scanner on the next page.</small>
+            </div>
+
+            <div style="display:flex; gap:12px;">
+                <button type="submit" style="flex:2; padding:14px; background:#007bff; border:none; border-radius:8px; color:white; font-weight:600; cursor:pointer; font-size:16px;">
+                    Confirm & Book Now
+                </button>
+                <a href="/dashboard" style="flex:1; text-align:center; padding:14px; background:#f2f2f2; border-radius:8px; text-decoration:none; color:#333; font-weight:600; font-size:16px;">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script>
+    // Prevent past date selection
+    const dateInput = document.getElementById("booking_date");
+    const today = new Date().toISOString().split("T")[0];
+    dateInput.setAttribute("min", today);
+</script>
+
+{% endblock %}

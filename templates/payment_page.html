@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Online Payment{% endblock %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 40px auto; padding: 20px;">
+    <div style="background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); padding: 40px; text-align: center;">
+        
+        <h2 style="color: #333; margin-bottom: 10px;">Payment Required 💳</h2>
+        <p style="color: #666; margin-bottom: 25px;">Please pay the total amount to confirm your booking.</p>
+        
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+            <span style="font-size: 14px; color: #888; text-transform: uppercase; letter-spacing: 1px;">Amount to Pay</span>
+            <div style="font-size: 32px; font-weight: 800; color: #1a8fe3;">₹{{ amount }}</div>
+        </div>
+
+        <div style="margin-bottom: 25px;">
+          <img src="/static/scanner.jpg" 
+               alt="UPI Scanner" 
+               style="width: 250px; height: auto; border: 1px solid #ddd; display: block; margin: 0 auto;">
+        <a href="{{ url_for('view_bookings') }}" class="btn" style="display: block; text-decoration: none; background: #28a745;">
+            I Have Paid - View My Bookings
+        </a>
+    </div>
+</div>
+{% endblock %}

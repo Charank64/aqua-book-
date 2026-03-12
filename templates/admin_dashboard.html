@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% block title %}Admin Control Panel{% endblock %}
+
+{% block content %}
+<div style="width:100%; max-width:1200px; margin:auto;">
+
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+    <h1 style="font-family:var(--font-display); color:white; font-size:2.2rem;">
+      Admin Control Panel <span style="color:var(--accent);">🛡️</span>
+    </h1>
+    <a href="/logout" class="btn btn-danger">Logout</a>
+  </div>
+
+  <div class="card" style="margin-bottom: 30px; padding: 25px; border-left: 5px solid var(--blue);">
+    <h2 style="font-size: 1.4rem; margin-bottom: 15px; color: #333;">Price & Scanner Settings 💰</h2>
+    <form action="/admin/update-rate" method="POST" style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <label style="font-weight:600;">Current Water Rate: ₹</label>
+            <input type="number" step="0.01" name="rate" value="{{ current_rate }}" required 
+                   style="padding: 10px; border-radius: 8px; border: 1px solid #ccc; width: 100px;">
+            <span style="color:#666;">/ per Liter</span>
+        </div>
+        <button type="submit" class="btn" style="width: auto; padding: 10px 25px; background: var(--blue);">
+            Update Rate
+        </button>
+        <div style="margin-left: auto; font-size: 0.9rem; color: #666;">
+            Active Scanner: <strong>scanner.jpg</strong>
+        </div>
+    </form>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card" data-icon="👥">
+      <div class="stat-value">{{ total_users }}</div>
+      <div class="stat-label">Total Users</div>
+    </div>
+    <div class="stat-card" data-icon="📦">
+      <div class="stat-value">{{ bookings|length }}</div>
+      <div class="stat-label">Total Bookings</div>
+    </div>
+    <div class="stat-card" data-icon="🚚">
+      <div class="stat-value">
+        {{ bookings | selectattr('status','equalto','Delivered') | list | length }}
+      </div>
+      <div class="stat-label">Delivered Orders</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:40px;">
+    <div class="card-header" style="background:linear-gradient(135deg,var(--blue),var(--blue-dark)); color: white;">
+      <h1>All Registered Customers</h1>
+      <p style="color: rgba(255,255,255,0.8);">Manage your AquaBook users</p>
+    </div>
+    <div class="card-body" style="padding:0;">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>User Name</th>
+              <th>Email Address</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td><strong>{{ user.name }}</strong></td>
+              <td>{{ user.email }}</td>
+              <td><span class="badge badge-green">Active</span></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h1>Detailed Delivery Requests 🚚</h1>
+      <p>Approve and Track Shipments</p>
+    </div>
+    <div class="card-body" style="padding:0;">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>SL.no</th>
+              <th>Customer</th>
+              <th>Liters</th>
+              <th>Payment</th>
+              <th>Address</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for booking in bookings %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td>
+                  <strong>{{ booking.customer_name }}</strong><br>
+                  <small style="color:#888;">{{ booking.user_email }}</small>
+              </td>
+              <td><span class="badge badge-blue">{{ booking.quantity }}L</span></td>
+              <td>
+                  <small>{{ booking.payment_method }}</small><br>
+                  <strong>₹{{ booking.amount }}</strong>
+              </td>
+              <td style="max-width: 200px; font-size: 0.85rem;">{{ booking.address }}</td>
+              <td>
+                <span class="badge {% if booking.status == 'Delivered' %}badge-green{% elif booking.status == 'Approved' %}badge-blue{% else %}badge-yellow{% endif %}">
+                  {{ booking.status }}
+                </span>
+              </td>
+              <td>
+                {% if booking.status == 'Pending' %}
+                  <a href="{{ url_for('approve_booking', booking_id=booking.id) }}" 
+                     style="background: #007bff; color: white; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 0.8rem;">
+                     Approve
+                  </a>
+                {% elif booking.status == 'Approved' %}
+                  <a href="{{ url_for('update_status', booking_id=booking.id) }}" 
+                     style="background: #28a745; color: white; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 0.8rem;">
+                     Mark Delivered
+                  </a>
+                {% else %}
+                  <span style="color: #28a745; font-weight: bold;">✓ Complete</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

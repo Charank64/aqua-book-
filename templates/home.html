@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Water Booking</title>
+</head>
+<body>
+
+<h1>Welcome to Water Booking System</h1>
+
+<a href="/login">Login</a>
+
+<div class="hero-section">
+    <h1>Pure Water, Delivered Fast 💧</h1>
+    <p>The most reliable water booking system for your home and office.</p>
+
+    <div class="hero-btns">
+        <a href="/register" class="btn-primary">Get Started</a>
+        <a href="/login" class="btn-secondary">Login</a>
+    </div>
+</div>
+
+<div id="features" class="features-grid">
+
+    <div class="feature-card">
+        <i class="fas fa-truck-fast"></i>
+        <h3>Fast Delivery</h3>
+        <p>Get your water delivered quickly to your home or office.</p>
+    </div>
+
+    <div class="feature-card">
+        <i class="fas fa-shield-halved"></i>
+        <h3>Pure & Safe</h3>
+        <p>Our water is purified and tested for the highest quality.</p>
+    </div>
+
+    <div class="feature-card">
+        <i class="fas fa-wallet"></i>
+        <h3>Affordable Price</h3>
+        <p>Best prices for water delivery with easy booking.</p>
+    </div>
+
+</div>
+
+
+<div class="support-section">
+
+<h2>Need Help Ordering? 🤝</h2>
+
+<p>If you cannot place an order on the website, contact us directly.</p>
+
+<div class="support-buttons">
+
+<a href="https://wa.me/9880104685" class="whatsapp-btn">
+<i class="fab fa-whatsapp"></i> WhatsApp Support
+</a>
+
+<a href="mailto:charank9008@gmail.com" class="email-btn">
+<i class="fas fa-envelope"></i> Email Support
+</a>
+
+</div>
+
+</div>
+</body>
+</html>
+
+{% endblock %}

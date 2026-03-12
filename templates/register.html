@@ -1,0 +1,94 @@
+```html
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+<div style="display:flex; justify-content:center; align-items:center; min-height:100vh; padding:16px; background-color:#f9f9f9;">
+
+    <div class="card" style="width:100%; max-width:440px; box-shadow:0 4px 12px rgba(9,144,11,0.1); border-radius:12px; overflow:hidden;">
+
+        <!-- Card Header -->
+        <div class="card-header" style="padding:32px 24px; background-color:#007bff; color:white; text-align:center;">
+            <p style="opacity:0.7; font-size:0.8rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Get Started</p>
+            <h1 style="margin:0 0 8px;">Create AquaBook Account</h1>
+            <p style="opacity:0.85; margin:0;">Join AquaBook — clean water, on demand</p>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body" style="padding:24px;">
+
+            <form method="POST" autocomplete="on">
+
+                <!-- Name -->
+                <div class="form-group" style="margin-bottom:16px;">
+                    <label class="form-label" for="name">Full Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        class="form-control"
+                        placeholder="Your full name"
+                        required
+                        autocomplete="name"
+                        style="width:100%; padding:10px 12px; border-radius:6px; border:1px solid #ccc; font-size:1rem;"
+                    >
+                </div>
+
+                <!-- Email -->
+                <div class="form-group" style="margin-bottom:16px;">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="you@example.com"
+                        required
+                        autocomplete="email"
+                        style="width:100%; padding:10px 12px; border-radius:6px; border:1px solid #ccc; font-size:1rem;"
+                    >
+                </div>
+
+                <!-- Password -->
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label class="form-label" for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Create a strong password"
+                        required
+                        minlength="6"
+                        autocomplete="new-password"
+                        style="width:100%; padding:10px 12px; border-radius:6px; border:1px solid #ccc; font-size:1rem;"
+                    >
+                    <p style="font-size:0.78rem; color:#777; margin-top:6px;">
+                        Minimum 6 characters
+                    </p>
+                </div>
+
+                <!-- Button -->
+                <button type="submit" class="btn btn-primary" style="width:100%; padding:12px; font-size:1rem; border-radius:6px; background-color:#007bff; border:none;">
+                    🚀 Create Account
+                </button>
+
+            </form>
+
+            <!-- Divider -->
+            <div style="text-align:center; margin:20px 0; color:#aaa;">or</div>
+
+            <!-- Login Link -->
+            <p style="text-align:center; font-size:0.9rem; color:#555;">
+                Already have an account?
+                <a href="/login" style="color:#007bff; text-decoration:none;">Sign in →</a>
+            </p>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+```

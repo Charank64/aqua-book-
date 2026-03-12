@@ -1,0 +1,311 @@
+/* -------------------------------------------------------------------------- */
+/* 1. VARIABLES & RESET                                                       */
+/* -------------------------------------------------------------------------- */
+:root {
+    /* Refined SaaS Color Palette */
+    --primary: #0061ff;
+    --primary-dark: #0046b8;
+    --primary-light: #e8f1ff;
+    --accent: #00d4aa;
+    
+    /* Semantic Status Colors */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+    
+    /* Neutral Modern Grays */
+    --white: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-400: #94a3b8;
+    --gray-700: #334155;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+
+    /* Elevation & Aesthetics */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1);
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 12px;
+    --radius-lg: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--gray-50);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. NAVIGATION (Glassmorphism)                                              */
+/* -------------------------------------------------------------------------- */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px); /* Glass effect */
+    padding: 0.75rem 0;
+    box-shadow: 0 1px 0 var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. LAYOUT & CARDS                                                          */
+/* -------------------------------------------------------------------------- */
+.content-wrapper {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+.card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-100);
+    margin-bottom: 24px;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 100px 24px;
+    background: radial-gradient(circle at top right, var(--primary-light), #ffffff);
+    border-radius: var(--radius-lg);
+    margin-bottom: 48px;
+    border: 1px solid var(--gray-100);
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 16px;
+    letter-spacing: -0.05em;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. FORMS & BUTTONS                                                         */
+/* -------------------------------------------------------------------------- */
+.form-group { margin-bottom: 24px; }
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--gray-700);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition);
+    background: var(--gray-50);
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary);
+    background-color: var(--white);
+    box-shadow: 0 0 0 4px rgba(0, 97, 255, 0.15);
+    outline: none;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    text-decoration: none;
+    gap: 10px;
+}
+
+.btn-primary { 
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); 
+    color: white; 
+    box-shadow: 0 4px 14px rgba(0, 97, 255, 0.3);
+}
+
+.btn-primary:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 20px rgba(0, 97, 255, 0.4); 
+}
+
+.btn-secondary { 
+    background: var(--white); 
+    border: 2px solid var(--gray-200); 
+    color: var(--text-main); 
+}
+
+.btn-secondary:hover { 
+    background: var(--gray-100); 
+    border-color: var(--gray-300);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. DATA TABLES (Modern Striped)                                            */
+/* -------------------------------------------------------------------------- */
+.table-responsive {
+    overflow-x: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th {
+    background-color: var(--gray-50);
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 2px solid var(--gray-100);
+}
+
+td {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--gray-100);
+    font-size: 0.95rem;
+    color: var(--gray-700);
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover { background-color: #fafafa; }
+
+/* -------------------------------------------------------------------------- */
+/* 6. STATUS & COMPONENTS                                                     */
+/* -------------------------------------------------------------------------- */
+.badge {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-pending { background: #fffbeb; color: #92400e; border: 1px solid #fef3c7; }
+.status-success { background: #ecfdf5; color: #065f46; border: 1px solid #d1fae5; }
+.status-danger { background: #fef2f2; color: #991b1b; border: 1px solid #fee2e2; }
+
+/* Dashboard Stat Cards Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: white;
+    padding: 24px;
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-card .label { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+.stat-card .value { font-size: 1.8rem; font-weight: 800; color: var(--primary); }
+
+/* -------------------------------------------------------------------------- */
+/* 7. FLASH MESSAGES                                                          */
+/* -------------------------------------------------------------------------- */
+.flash-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 2000;
+    max-width: 400px;
+    width: 100%;
+}
+
+.flash-message {
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="contact-container">
+    <div class="card">
+        <h2>Contact Us <i class="fas fa-envelope-open-text"></i></h2>
+        <p>Have a question or need help with your water delivery? Send us a message!</p>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label></label>
+                <input type="text" name="name" placeholder="CHARAN" required>
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="charank9008@gmail.com" required>
+            </div>
+            <div class="form-group">
+                <label>Subject</label>
+                <input type="text" name="subject" placeholder="This Water Booking System is a comprehensive digital solution designed to simplify and automate the process of ordering and delivering high-quality drinking water to homes and offices.">
+            </div>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea name="message" rows="5" placeholder=""We're here to help you stay hydrated! Whether you have a question about our purification process or need assistance with a delivery, our team is ready to support you. Fill out the form below and we will respond within 24 hours."" required></textarea>
+            </div>
+            <button type="submit" class="btn"></button>
+        </form>
+    </div>
+</div>
+{% endblock %}

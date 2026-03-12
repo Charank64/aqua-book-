@@ -1,0 +1,216 @@
+```html
+{% extends "base.html" %}
+{% block title %}My Bookings{% endblock %}
+
+{% block content %}
+
+<div style="max-width:1100px; margin:auto; padding:20px;">
+
+<!-- Page Title -->
+<div style="margin-bottom:25px; text-align:center;">
+<h2 style="color:white; font-size:28px;">
+My Water Bookings 💧
+</h2>
+<p style="color:rgba(255,255,255,0.7);">
+Track your water delivery requests
+</p>
+</div>
+
+<!-- Search + Filter -->
+<div style="
+display:flex;
+gap:15px;
+margin-bottom:20px;
+flex-wrap:wrap;
+justify-content:center;
+">
+
+<input
+type="text"
+id="searchInput"
+placeholder="🔍 Search bookings..."
+onkeyup="searchBookings()"
+style="
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+min-width:240px;
+">
+
+<select
+id="statusFilter"
+onchange="filterStatus()"
+style="
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+min-width:160px;
+">
+
+<option value="all">All Status</option>
+<option value="Pending">Pending</option>
+<option value="Delivered">Delivered</option>
+
+</select>
+
+</div>
+
+<!-- Card -->
+<div style="
+background:white;
+border-radius:12px;
+box-shadow:0 6px 18px rgba(0,0,0,0.1);
+padding:25px;
+">
+
+<h3 style="margin-bottom:6px;">Your Delivery Requests</h3>
+<p style="color:#666; margin-bottom:20px;">
+View and manage your bookings
+</p>
+
+<!-- Table -->
+<div style="overflow-x:auto;">
+
+<table style="
+width:100%;
+border-collapse:collapse;
+">
+
+<thead>
+
+<tr style="background:#f4f6f9;">
+<th style="padding:12px; text-align:left;">Date</th>
+<th style="padding:12px; text-align:left;">Quantity</th>
+<th style="padding:12px; text-align:left;">Delivery Address</th>
+<th style="padding:12px; text-align:left;">Status</th>
+</tr>
+
+</thead>
+
+```html
+<tbody id="bookingTable">
+
+{% for booking in bookings %}
+
+<tr style="border-top:1px solid #eee;">
+
+  <td style="padding:12px;">
+    {{ booking['booking_date'] }}
+  </td>
+
+  <td style="padding:12px;">
+    {{ booking['quantity'] | default('0', true) }} L
+  </td>
+
+  <td style="padding:12px;">
+    {{ booking['address'] }}
+  </td>
+
+  <td style="padding:12px;">
+    {% if booking['status'] == 'Delivered' %}
+      <span style="background:#e6f9ed;color:#0a7f3f;padding:5px 10px;border-radius:6px;">Delivered</span>
+    {% elif booking['status'] %}
+      <span style="background:#fff4e5;color:#c77700;padding:5px 10px;border-radius:6px;">{{ booking['status'] }}</span>
+    {% else %}
+      <span style="color:#999;font-style:italic;">N/A</span>
+    {% endif %}
+  </td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+
+
+
+</table>
+
+</div>
+
+{% if bookings|length == 0 %}
+
+<div style="text-align:center; padding:40px;">
+
+<div style="font-size:40px;">📦</div>
+
+<h3>No bookings yet</h3>
+
+<p style="color:#666;">
+You have not booked water delivery.
+</p>
+
+<a href="/book-water" style="
+display:inline-block;
+margin-top:15px;
+padding:10px 18px;
+background:#007bff;
+color:white;
+border-radius:8px;
+text-decoration:none;
+font-weight:600;
+">
+Book Water Now
+</a>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+<!-- SEARCH SCRIPT -->
+<script>
+
+function searchBookings(){
+
+let input=document.getElementById("searchInput").value.toLowerCase();
+
+let rows=document.querySelectorAll("#bookingTable tr");
+
+rows.forEach(row=>{
+
+let text=row.innerText.toLowerCase();
+
+row.style.display=text.includes(input)?"":"none";
+
+});
+
+}
+
+</script>
+
+<!-- FILTER SCRIPT -->
+<script>
+
+function filterStatus(){
+
+let filter=document.getElementById("statusFilter").value;
+
+let rows=document.querySelectorAll("#bookingTable tr");
+
+rows.forEach(row=>{
+
+let status=row.cells[3].innerText;
+
+if(filter==="all" || status===filter){
+
+row.style.display="";
+
+}else{
+
+row.style.display="none";
+
+}
+
+});
+
+}
+
+</script>
+
+{% endblock %}
+```

@@ -1,0 +1,138 @@
+```html
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div style="max-width:1000px; margin:auto; padding:20px;">
+
+<!-- Greeting -->
+<div style="text-align:center; margin-bottom:40px;">
+    <h2 style="color:white; font-size:28px;">
+        Hello, {{ name }} 👋
+    </h2>
+    <p style="color:rgba(255,255,255,0.7); margin-top:6px;">
+        Manage your water supply — quick, easy, reliable.
+    </p>
+</div>
+
+<!-- Stats -->
+<div style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:30px; justify-content:center;">
+
+    <div style="
+        flex:1;
+        min-width:220px;
+        background:white;
+        border-radius:12px;
+        padding:25px;
+        box-shadow:0 6px 18px rgba(0,0,0,0.1);
+        text-align:center;
+    ">
+        <div style="font-size:34px;">📋</div>
+        <h2 style="margin-top:10px;">{{ total_bookings }}</h2>
+        <p style="color:#666;">Total Bookings</p>
+    </div>
+
+    <div style="
+        flex:1;
+        min-width:220px;
+        background:white;
+        border-radius:12px;
+        padding:25px;
+        box-shadow:0 6px 18px rgba(0,0,0,0.1);
+        text-align:center;
+    ">
+        <div style="font-size:34px;">💧</div>
+        <h2 style="margin-top:10px;">{{ total_liters }}</h2>
+        <p style="color:#666;">Litres Ordered</p>
+    </div>
+
+</div>
+
+<!-- Quick Actions -->
+<div style="
+    background:white;
+    border-radius:12px;
+    padding:30px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.1);
+">
+
+<h2 style="margin-bottom:6px;">Quick Actions</h2>
+<p style="color:#666; margin-bottom:20px;">
+What would you like to do today?
+</p>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap;">
+
+<a href="/book-water" style="
+flex:1;
+min-width:200px;
+text-decoration:none;
+background:#f4f7fb;
+padding:20px;
+border-radius:10px;
+display:flex;
+align-items:center;
+gap:14px;
+color:#333;
+transition:0.2s;
+">
+<span style="font-size:28px;">💧</span>
+<div>
+<b>Book Water</b>
+<p style="margin:0; font-size:13px; color:#666;">
+Schedule a new delivery
+</p>
+</div>
+</a>
+
+<a href="/view-bookings" style="
+flex:1;
+min-width:200px;
+text-decoration:none;
+background:#f4f7fb;
+padding:20px;
+border-radius:10px;
+display:flex;
+align-items:center;
+gap:14px;
+color:#333;
+">
+<span style="font-size:28px;">📋</span>
+<div>
+<b>My Bookings</b>
+<p style="margin:0; font-size:13px; color:#666;">
+View & manage orders
+</p>
+</div>
+</a>
+
+<a href="/logout" style="
+flex:1;
+min-width:200px;
+text-decoration:none;
+background:#fff2f2;
+padding:20px;
+border-radius:10px;
+display:flex;
+align-items:center;
+gap:14px;
+color:#c0392b;
+">
+<span style="font-size:28px;">🚪</span>
+<div>
+<b>Logout</b>
+<p style="margin:0; font-size:13px;">
+Sign out of your account
+</p>
+</div>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
+```

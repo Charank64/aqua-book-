@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="admin-header">
+    <h2>Customer Inquiries <i class="fas fa-envelope-open-text"></i></h2>
+    <a href="/admin-dashboard" class="btn-action">Back to Dashboard</a>
+</div>
+
+<div class="card">
+    <h3>Messages from Contact Form</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for msg in messages %}
+            <tr>
+                <td>{{ msg.id }}</td>
+                <td>{{ msg.name }}</td>
+                <td>{{ msg.email }}</td>
+                <td>{{ msg.subject }}</td>
+                <td>{{ msg.message }}</td>
+                <td>{{ msg.created_at.strftime('%Y-%m-%d %H:%M') if msg.created_at else 'N/A' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
